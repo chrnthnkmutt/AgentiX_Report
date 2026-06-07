@@ -1,0 +1,41 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+    User["Approver"] -- request pending approvals --> P41["4.1 Fetch Pending Approvals"]
+    P41 -- read steps --> D3[("Workflows")]
+    D3 -- pending steps --> P41
+    P41 -- step list --> P42["4.2 Display Workflow Step"]
+    P42 -- step details --> User
+    User -- approve/reject/return --> P43["4.3 Submit Action"]
+    P43 -- action --> P44["4.4 Validate Action & Permissions"]
+    P44 -- read workflow --> D3
+    D3 -- workflow data --> P44
+    P44 -- validated action --> P45["4.5 Update Workflow Step Status"]
+    P45 -- update step status --> D3
+    P45 -- approval data --> P46["4.6 Create Approval Record"]
+    P46 -- insert approval --> D4[("Approvals")]
+    P45 -- rejection --> P47["4.7 Route on Reject"]
+    P47 -- update return target --> D3
+    P45 -- next step --> P48["4.8 Notify Next Approver"]
+    P48 -- notify --> User
+    P43 -- approval event --> P49["4.9 Log Approval Event"]
+    P49 -- write log --> D6[("Audit Logs")]
+
+     User:::actorNode
+     P41:::processNode
+     D3:::dataStore
+     P42:::processNode
+     P43:::processNode
+     P44:::processNode
+     P45:::processNode
+     P46:::processNode
+     D4:::dataStore
+     P47:::processNode
+     P48:::processNode
+     P49:::processNode
+     D6:::dataStore
+    classDef processNode stroke:#818cf8,fill:#eef2ff,color:#1e1b4b
+    classDef dataStore stroke:#2dd4bf,fill:#f0fdfa,color:#1e1b4b
+    classDef actorNode stroke:#a78bfa,fill:#f5f3ff,color:#1e1b4b

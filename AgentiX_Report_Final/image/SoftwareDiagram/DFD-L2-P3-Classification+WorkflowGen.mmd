@@ -1,0 +1,43 @@
+---
+config:
+  layout: dagre
+---
+flowchart TB
+    User["User"] -- analyze request --> P31["3.1 Retrieve Document Metadata"]
+    P31 -- read metadata --> D2[("Documents")]
+    D2 -- document info --> P31
+    P31 -- file reference --> P32["3.2 Fetch Document File"]
+    P32 -- download file --> Storage["Supabase Storage"]
+    Storage -- document file --> P32
+    P32 -- content --> P33["3.3 Prepare AI Prompt"]
+    P33 -- prompt + content --> P34["3.4 Send to AI Provider"]
+    P34 -- request --> AI["AI Providers<br>(Gemini / Typhoon)"]
+    AI -- classification + workflow steps --> P34
+    P34 -- raw response --> P35["3.5 Parse AI Response"]
+    P35 -- workflow config --> P36["3.6 Create Workflow"]
+    P36 -- insert workflow --> D3[("Workflows")]
+    P35 -- status update --> P37["3.7 Update Document Status"]
+    P37 -- update document status --> D2
+    P36 -- analysis result --> P38["3.8 Return Analysis Result"]
+    P38 -- result + workflow id --> User
+    P35 -- analysis event --> P39["3.9 Log Analysis Event"]
+    P39 -- write log --> D6[("Audit Logs")]
+
+     User:::external
+     P31:::processNode
+     D2:::dataStore
+     P32:::processNode
+     Storage:::external
+     P33:::processNode
+     P34:::processNode
+     AI:::external
+     P35:::processNode
+     P36:::processNode
+     D3:::dataStore
+     P37:::processNode
+     P38:::processNode
+     P39:::processNode
+     D6:::dataStore
+    classDef processNode stroke:#818cf8,fill:#eef2ff,color:#1e1b4b
+    classDef dataStore stroke:#2dd4bf,fill:#f0fdfa,color:#1e1b4b
+    classDef external stroke:#fb923c,fill:#fff7ed,color:#1e1b4b

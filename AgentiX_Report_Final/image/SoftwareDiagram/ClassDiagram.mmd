@@ -1,0 +1,125 @@
+---
+config:
+  layout: elk
+---
+classDiagram
+direction LR
+    class AIService {
+	    -providers: Map
+	    -preferredProvider: ProviderType
+	    -currentModel: string
+	    -temperature: number
+	    -maxTokens: number
+	    +analyzeDocument(pdfBytes, metadata) : WorkflowSuggestion
+	    +chat(messages, systemPrompt) : ChatResponse
+	    +getAvailableProviders() : string[]
+	    +getPreferredProvider() : string
+	    +setPreferredProvider(providerType) : void
+    }
+
+    class TyphoonClient {
+	    -apiKey: string
+	    -model: string
+	    -baseURL: string
+	    -temperature: number
+	    -maxTokens: number
+	    +analyzeDocument(pdfBytes, metadata) : WorkflowSuggestion
+	    +chat(messages, systemPrompt) : ChatResponse
+    }
+
+    class GeminiClient {
+	    -apiKey: string
+	    -model: string
+	    -baseURL: string
+	    +analyzeDocument(pdfBytes, metadata) : WorkflowSuggestion
+	    +chat(messages, systemPrompt) : ChatResponse
+    }
+
+    class Provider {
+	    +getName() : string
+	    +isAvailable() : boolean
+	    +analyzeDocument(pdfBytes, metadata) : WorkflowSuggestion
+	    +chat(messages, systemPrompt) : ChatResponse
+    }
+
+    class SupabaseStorage {
+	    -projectUrl: string
+	    -serviceRoleKey: string
+	    +uploadFile(bucket, path, data, contentType) : void
+	    +downloadFile(bucket, path) : Buffer
+	    +deleteFile(bucket, path) : void
+	    +getPublicUrl(bucket, path) : string
+	    +createSignedUrl(bucket, path, expiresIn) : string
+    }
+
+    class APIError {
+	    +status: number
+	    +message: string
+    }
+
+    class GlobalErrorBoundary {
+    }
+
+    class DashboardErrorBoundary {
+    }
+
+    class Component {
+    }
+
+    class Error {
+    }
+
+    class Document {
+	    +id: string
+	    +owner_id: string
+	    +title: string
+	    +document_type: string
+	    +status: string
+    }
+
+    class Workflow {
+	    +id: string
+	    +document_id: string
+	    +config: object
+	    +created_by: string
+    }
+
+    class WorkflowStep {
+	    +id: string
+	    +workflow_id: string
+	    +step_order: number
+	    +step_type: string
+	    +assigned_role: string
+	    +status: string
+    }
+
+    class PendingApproval {
+	    +step: WorkflowStep
+	    +document: Document
+	    +workflow: Workflow
+    }
+
+    class AIClassification {
+	    +document_type: string
+	    +risk_level: string
+	    +confidence: number
+    }
+
+	<<interface>> Provider
+	<<interface>> Document
+	<<interface>> Workflow
+	<<interface>> WorkflowStep
+	<<interface>> PendingApproval
+	<<interface>> AIClassification
+
+    AIService --> Provider : uses
+    TyphoonClient ..|> Provider
+    GeminiClient ..|> Provider
+    AIService *-- TyphoonClient
+    AIService *-- GeminiClient
+    GlobalErrorBoundary --|> Component
+    DashboardErrorBoundary --|> Component
+    APIError --|> Error
+    PendingApproval --> WorkflowStep
+    PendingApproval --> Document
+    PendingApproval --> Workflow

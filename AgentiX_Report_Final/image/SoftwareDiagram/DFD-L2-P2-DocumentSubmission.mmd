@@ -1,0 +1,19 @@
+---
+config:
+  layout: fixed
+---
+flowchart TB
+    User["User"] -- file + metadata --> P21["2.1 Upload Document"]
+    P21 -- file + metadata --> P22["2.2 Validate File & Metadata"]
+    P22 -- validated file --> P23["2.3 Store File in Storage"]
+    P23 -- store file --> Storage["Supabase Storage"]
+    Storage -- file path / signed URL --> P23
+    P22 -- metadata --> P24["2.4 Create Document Record"]
+    P24 -- insert document --> D2[("Documents")]
+    D2 -- document id --> P24
+    P24 -- document id --> P25["2.5 Create Document Version"]
+    P25 -- create version --> D2
+    P25 -- submission result --> P26["2.6 Return Submission Status"]
+    P26 -- status + doc id --> User
+    P22 -- submission event --> P27["2.7 Log Submission Event"]
+    P27 -- write log --> D6[("Audit Logs")]

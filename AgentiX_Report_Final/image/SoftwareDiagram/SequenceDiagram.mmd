@@ -1,0 +1,48 @@
+sequenceDiagram
+  autonumber
+  actor User
+  participant Frontend
+  participant API as Vercel API
+  participant DB as Supabase DB
+  participant Storage as Supabase Storage
+  participant AI as AI Provider
+
+  User->>Frontend: Enter credentials
+  Frontend->>API: POST /auth/login
+  API->>DB: Query users + verify password
+  DB-->>API: User record
+  API-->>Frontend: Auth result + role
+  Frontend-->>User: Logged in UI
+
+  User->>Frontend: Upload document + metadata
+  Frontend->>API: POST /documents
+  API->>Storage: Store file
+  Storage-->>API: File path / signed URL
+  API->>DB: Create document + version
+  DB-->>API: Document ID
+  API-->>Frontend: Submission status
+
+  User->>Frontend: Trigger AI analysis
+  Frontend->>API: POST /documents/{id}/analyze
+  API->>Storage: Download document
+  Storage-->>API: PDF bytes
+  API->>AI: Analyze document + propose workflow
+  AI-->>API: Classification + workflow steps
+  API->>DB: Create workflow + steps
+  API->>DB: Update document status
+  API-->>Frontend: Analysis result
+
+  User->>Frontend: Approve / Reject step
+  Frontend->>API: POST /workflows/{id}/steps/{stepId}/action
+  API->>DB: Update step + create approval record
+  API-->>Frontend: Updated workflow state
+
+  User->>Frontend: Sign document
+  Frontend->>API: POST /documents/{id}/sign
+  API->>Storage: Download document
+  Storage-->>API: PDF bytes
+  API->>API: Hash + Sign (RSA-2048)
+  API->>DB: Store signature
+  API->>Storage: Upload signed document
+  API-->>Frontend: Signed document link
+  Frontend-->>User: Download signed file

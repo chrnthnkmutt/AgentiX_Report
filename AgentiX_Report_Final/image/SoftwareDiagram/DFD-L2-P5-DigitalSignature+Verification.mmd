@@ -1,0 +1,23 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+    User["User"] -- sign/verify request --> P51["5.1 Check Workflow Completion"]
+    P51 -- read document status --> D2[("Documents")]
+    D2 -- workflow status --> P51
+    P51 -- approved doc --> P52["5.2 Generate Document Hash"]
+    P52 -- hash --> P53["5.3 Create Digital Signature"]
+    P53 -- signature --> P54["5.4 Store Signature Record"]
+    P54 -- insert signature --> D5[("Signatures")]
+    P53 -- signature data --> P55["5.5 Embed Signature in Document"]
+    P55 -- store signed file --> Storage["Supabase Storage"]
+    Storage -- signed file ref --> P55
+    User -- verify request --> P56["5.6 Verify Signature"]
+    P56 -- fetch signed file --> Storage
+    P56 -- signature data --> D5
+    P56 -- verification result --> User
+    P55 -- signed document --> P57["5.7 Provide Signed Document"]
+    P57 -- download link --> User
+    P53 -- signature event --> P58["5.8 Log Signature Event"]
+    P58 -- write log --> D6[("Audit Logs")]

@@ -1,0 +1,56 @@
+---
+config:
+  layout: elk
+---
+flowchart RL
+    User["Users<br>(Employee / Manager / Dept Head / C-Level / Admin)"] -- credentials --> P1["1.0 Authenticate User"]
+    P1 -- auth result + role --> User
+    P1 -- read/write --> D1[("Users")]
+    P1 -- store audit --> D6[("Audit Logs")]
+    User -- document + metadata --> P2["2.0 Document Submission"]
+    P2 -- store file --> Storage["Supabase Storage"]
+    P2 -- create document record --> D2[("Documents")]
+    P2 -- store audit --> D6
+    P2 -- submission status --> User
+    P2 -- document content/ref --> P3["3.0 AI Classification &amp;<br>Workflow Generation"]
+    P3 -- prompt/doc content --> AI["AI Providers<br>(Gemini / Typhoon)"]
+    AI -- classification + workflow steps --> P3
+    P3 -- update document status --> D2
+    P3 -- create workflow --> D3[("Workflows")]
+    P3 -- store audit --> D6
+    User -- approve/reject/return --> P4["4.0 Workflow Execution"]
+    P4 -- read/update steps --> D3
+    P4 -- create approval record --> D4[("Approvals")]
+    P4 -- status updates --> User
+    P4 -- store audit --> D6
+    P4 -- approved workflow --> P5["5.0 Digital Signature &amp;<br>Verification"]
+    P5 -- sign/verify --> D5[("Signatures")]
+    P5 -- signed doc access --> Storage
+    P5 -- verification status --> User
+    P5 -- store audit --> D6
+    Admin["Admin"] -- user/department config --> P6["6.0 Admin Management"]
+    P6 -- manage users/depts --> D1
+    P6 -- audit queries --> D6
+    P6 -- status/result --> Admin
+    DB["Supabase Database"]
+
+     User:::externalEntity
+     P1:::processNode
+     D1:::dataStore
+     D6:::dataStore
+     P2:::processNode
+     Storage:::externalEntity
+     D2:::dataStore
+     P3:::processNode
+     AI:::externalEntity
+     D3:::dataStore
+     P4:::processNode
+     D4:::dataStore
+     P5:::processNode
+     D5:::dataStore
+     Admin:::externalEntity
+     P6:::processNode
+     DB:::externalEntity
+    classDef processNode stroke:#818cf8,fill:#eef2ff,color:#1e1b4b
+    classDef dataStore stroke:#2dd4bf,fill:#f0fdfa,color:#1e1b4b
+    classDef externalEntity stroke:#fb923c,fill:#fff7ed,color:#1e1b4b

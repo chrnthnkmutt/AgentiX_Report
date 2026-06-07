@@ -1,0 +1,27 @@
+---
+config:
+  layout: dagre
+---
+flowchart LR
+    User["Users<br>(Employee / Manager / Dept Head / C-Level / Admin)"] -- Login credentials --> System["AgentiX Platform"]
+    System -- Auth result, role data --> User
+    User -- Document upload + metadata --> System
+    System -- Store document file --> Storage["Supabase Storage"]
+    Storage -- Signed URL / file access --> System
+    System -- Create/update records --> DB["Supabase Database"]
+    DB -- Documents, workflows, approvals, users --> System
+    User -- Approve / reject / return --> System
+    System -- Workflow status updates --> User
+    User -- Chat / Q&A / classification request --> System
+    System -- Document content / prompts --> AI["AI Providers<br>(Gemini / Typhoon)"]
+    AI -- Classification + workflow steps --> System
+    System -- Signed document / verification status --> User
+
+     User:::userNode
+     System:::systemNode
+     Storage:::externalNode
+     DB:::externalNode
+     AI:::externalNode
+    classDef userNode stroke:#818cf8,fill:#eef2ff,color:#1e1b4b
+    classDef systemNode stroke:#2dd4bf,fill:#f0fdfa,color:#1e1b4b
+    classDef externalNode stroke:#fb923c,fill:#fff7ed,color:#1e1b4b

@@ -1,0 +1,19 @@
+---
+config:
+  layout: dagre
+---
+flowchart LR
+    Employee["Employee"] --> LO["Login"] & UDC["Upload Document"] & AIQA["AI Chat / Q&A"] & VSS["View Submission Status"] & SFA["Submit for Approval"]
+    UDC --> ST["Supabase Storage"]
+    AIQA --> AIS["AI Service"]
+    SFA --> AIC["AI Classification"]
+    AIC --> AIS & GW["Generate Workflow"]
+    GW --> CW["Customize Workflow"]
+    Manager["Manager"] --> VPA["View Pending Approvals"] & ARRS["Approve / Reject / Return Step"]
+    DeptHead["DeptHead"] --> VPA & ARRS
+    CLevel["CLevel"] --> VPA & ARRS
+    ARRS --> UWS["Update Workflow Status"]
+    UWS --> DS["Digital Signature"]
+    DS --> VS["Verify Signature"]
+    Admin["Admin"] --> MU["Manage Users"] & MDM["Manage Departments"] & VAL["View Audit Logs"] & SC["System Configuration"] & VAA["View All Approvals"]
+    VAL --> ALQ["Audit Log Queries"]

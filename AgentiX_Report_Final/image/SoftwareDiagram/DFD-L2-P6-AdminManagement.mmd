@@ -1,0 +1,26 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+    Admin["Admin User"] -- user CRUD request --> P61["6.1 Manage Users"]
+    P61 -- create/update/delete --> D1[("Users")]
+    D1 -- user data --> P61
+    Admin -- department CRUD request --> P62["6.2 Manage Departments"]
+    P62 -- create/update/delete --> D7[("Departments")]
+    D7 -- department data --> P62
+    Admin -- audit query --> P63["6.3 View Audit Logs"]
+    P63 -- read logs --> D6[("Audit Logs")]
+    D6 -- log entries --> P63
+    Admin -- config update --> P64["6.4 Configure System Settings"]
+    P64 -- write config --> D8[("System Config")]
+    D8 -- config state --> P64
+    Admin -- seed request --> P65["6.5 Seed Demo Data"]
+    P65 -- insert demo data --> D1
+    P65 -- insert demo depts --> D7
+    P61 -- result --> P66["6.6 Return Admin Results"]
+    P62 -- result --> P66
+    P63 -- result --> P66
+    P64 -- result --> P66
+    P65 -- result --> P66
+    P66 -- admin response --> Admin
