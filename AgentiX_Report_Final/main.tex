@@ -2081,189 +2081,390 @@ The platform is structured around six core modules, navigable via a persistent s
 
 \subsection{Landing Page (Home)}
 
-The Landing Page serves as the public-facing entry point and the conceptual anchor for the application. Its primary design goal is to communicate trust, security, and advanced capability immediately to the user.
-
-\subsubsection{Hero Section}
-The visual hierarchy begins with a high-impact Hero Section featuring a gradient background (\texttt{bg\allowbreak-gradient\allowbreak-to\allowbreak-br}) and a clear, bold value proposition: "Secure Document Approval Platform." This section integrates:
-
-\begin{itemize}
-\item \textbf{Trust Signals:} Badges highlighting "Powered by Agentic AI" to emphasize the platform's technological foundation.
-\item \textbf{Call-to-Action (CTA):} Prominent buttons to "Start Approval Process" or "Watch Demo," guiding users into the core workflow.
-\item \textbf{Visual Context:} High-quality imagery depicting enterprise workflows, specifically selected to evoke professionalism. An \texttt{ImageWithFallback} component ensures that even if the primary asset fails to load, the visual structure remains intact with placeholders.
-\end{itemize}
-
-\subsubsection{Feature \& Workflow Visualization}
-To demystify the complex backend processes, the page includes:
-
-\begin{itemize}
-\item \textbf{Process Visualization:} A step-by-step graphical breakdown of the workflow (Submission $\rightarrow$ AI Routing $\rightarrow$ Secure Approval). This reduces user anxiety about the "black box" nature of AI by explicitly showing the logic flow.
-\item \textbf{Benefit Metrics:} Statistical highlights (e.g., "98\% Faster Processing," "Zero Security Breaches") provide quantitative evidence of the platform's efficacy.
-\item \textbf{Compliance Indicators:} Explicit mentions of regulatory standards (ISO 27001, SOC 2, GDPR) reassure enterprise clients regarding data governance. These are presented using a grid layout for easy scanning.
-\end{itemize}
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{image/landing_page_placeholder.png}
     \caption{AgentiX Landing Page Interface}
     \label{fig:landing_page}
 \end{figure}
+The Landing Page is the public-facing entrance to AgentiX and the primary trust-building surface for prospective enterprise customers. The design emphasises clarity, credibility, and an immediate path to action: quick onboarding, clear security assurances, and succinct benefit statements.
+
+\subsubsection{Hero Section}
+The Hero occupies the top of the page and uses a soft gradient background, large typographic scale, and a concise value proposition to capture attention. The headline shown on the screenshots — ``Document Approvals, Reimagined'' — is supported by a short explanatory subheading and a single, prominent call-to-action.
+
+\begin{itemize}
+\item \textbf{Headline:} ``Document Approvals, Reimagined.'' The heading communicates the product's transformative promise with a confident, modern tone.
+\item \textbf{Supporting copy:} A single sentence describes the workflow: ``Create your organization, upload your org chart, and let AI build intelligent approval workflows. From upload to signature in minutes.'' This explains the user benefit in plain language.
+\item \textbf{Primary CTA:} A visually prominent button (e.g., \texttt{Get Started with Google}) is styled to draw the eye and communicates a low-friction sign-up path: ``Free to start. No credit card required.'' 
+\item \textbf{Trust Badge:} A small, non-distracting badge reads ``Powered by Agentic AI'' and sits above or near the headline to reinforce technological credibility.
+\end{itemize}
+
+\subsubsection{Top-Level Benefits and Metrics}
+Beneath the hero, a horizontal row of compact benefit cards succinctly communicates measurable outcomes and differentiators. The screenshots emphasise four short claims that can be scanned quickly:
+
+\begin{itemize}
+\item \textbf{10x:} Faster Approvals — indicates relative speed improvements.
+\item \textbf{AI:} Powered Classification — highlights the AI-driven routing and classification capability.
+\item \textbf{100\%:} Tamper-Proof — communicates integrity and cryptographic signing guarantees.
+\item \textbf{Zero:} Manual Routing — emphasizes elimination of manual steps via automation.
+\end{itemize}
+
+\subsubsection{Feature Cards}
+A set of four feature cards presents core capabilities with a single-line title and 1--2 sentence description mirroring the visual layout in the images. The cards are designed for quick comprehension and to act as entry points into deeper documentation or product pages.
+
+\begin{itemize}
+\item \textbf{AI Classification:} Upload any document — the system reads, classifies, assesses risk, and routes to the right approvers automatically.
+\item \textbf{Smart Routing:} Approval workflows are generated from your organisation structure so the right people, in the right order, are notified every time.
+\item \textbf{Digital Signatures:} RSA-2048 cryptographic signatures are embedded at the bit level; any tampering is instantly detected and verifiable.
+\item \textbf{Intelligent Return Loop:} Rejected documents are routed back to the responsible party (not the original submitter) to accelerate correction and resubmission.
+\end{itemize}
 
 \vspace{1em}
 
-\subsection{The Workflow Engine (Submit)}
-
-The "Submit" module is the functional heart of the application, utilizing a wizard-like interface to guide users through the complex process of initiating a document workflow. It is divided into three distinct stages to manage cognitive load.
-
-\subsubsection{Stage 1: AI-Powered Chat Interface}
-Instead of traditional, rigid forms, AgentiX employs a \textbf{Conversational UI} as the primary input method.
-
-\begin{itemize}
-\item \textbf{Natural Language Processing (NLP) Simulation:} Users can simply type requirements (e.g., "I need to get this NDA signed by Legal") or upload files directly. The interface tracks the message history in state, differentiating between \texttt{user} and \texttt{assistant} roles.
-\item \textbf{Contextual Awareness:} The interface simulates an AI assistant that analyzes the input/file and responds with a proposed plan. A "typing indicator" animation is used to mimic real-time processing, enhancing the perceived responsiveness and realism of the AI agent.
-\item \textbf{Template Shortcuts:} For common tasks, clickable "Prompt Templates" (e.g., Contract Approval, Multi-department Review) are provided. These pre-populate the chat input, reducing friction for new users.
-\end{itemize}
-
-\subsubsection{Stage 2: Classification \& Transparency}
-Once the intent is captured, the application transitions to the \textbf{Classification Page}. This view is critical for "Explainable AI" (XAI).
-
-\begin{itemize}
-\item \textbf{Confidence Scoring:} The system displays a confidence percentage (e.g., "94\% Confidence") regarding its classification of the document. This transparency is crucial for building user trust in automated systems.
-\item \textbf{Routing Visualization:} A vertical timeline visually represents the proposed approval chain (e.g., Legal Department $\rightarrow$ Finance Department $\rightarrow$ Executive Sign-off). Each step displays its estimated Service Level Agreement (SLA) and department ownership.
-\item \textbf{Security Features Manifest:} A distinct section outlines the specific security protocols (Encryption, Digital Signatures) that will be applied to this specific workflow instance, reinforcing the security-first value proposition.
-\end{itemize}
-
-\subsubsection{Stage 3: Workflow Customization}
-Recognizing that AI may not capture every nuance, the \textbf{Customization View} provides manual override capabilities.
-
-\begin{itemize}
-\item \textbf{Dynamic State Management:} Users can modify the sequence of approval steps. The React state handles complex array manipulations for adding, removing, or reordering steps.
-\item \textbf{Approver Management:} Specific individuals can be added or removed from steps using search-enabled dropdowns. This ensures that the workflow is not just a suggestion but an executable plan.
-\item \textbf{Parallelization Controls:} Users can toggle between "Sequential" and "Parallel" approval modes using switch components. This allows organizations to optimize for speed (parallel) or strict hierarchy (sequential).
-\item \textbf{SLA Configuration:} Time-to-approve limits can be adjusted per step to reflect urgency, updating the total estimated duration in real-time.
-\end{itemize}
-
+\subsection{Homepage After Login}
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\linewidth]{image/workflow_engine_placeholder.png}
-    \caption{AgentiX Workflow Engine Interface}
-    \label{fig:workflow_engine}
+  \centering
+  \includegraphics[width=0.48\linewidth]{image/workspace_placeholder.png}
+  \hfill
+  \includegraphics[width=0.48\linewidth]{image/main_dashboard_placeholder.png}
+  \caption{Homepage after login: left — organisation selector with "Create new organization" card; right — example workspace card and workspace entry.}
+  \label{fig:homepage_after_login}
 \end{figure}
 
-\subsection{Approval Dashboard}
-
-The Dashboard provides a centralized command center for monitoring organizational throughput and individual task management. It is designed to maximize "Observability."
-
-\subsubsection{Metrics \& Analytics}
-Top-level cards provide immediate health checks of the system:
+After authentication, users land on an organisation-centric homepage that prioritises fast access to workspaces and immediate context about membership and roles. The attached screenshots (Figure~\ref{fig:homepage_after_login}) illustrate the principal UI elements and interaction patterns used on this screen:
 
 \begin{itemize}
-\item \textbf{Operational Stats:} Real-time counters for Pending Approvals, Completed items, and Overdue tasks. Icons are color-coded (e.g., Red for Overdue, Green for Completed) for instant visual recognition.
-\item \textbf{Performance Tracking:} A progress bar visualization for "Average Processing Time," allowing management to benchmark efficiency against established SLAs.
+\item \textbf{Welcome Banner:} A personalised greeting (for example, "Welcome back, Pakawat") and a short prompt to choose or create an organisation reinforces continuity between sessions.
+\item \textbf{Organisation Cards:} Each organisation is presented as a card showing the organisation name, role badges (e.g., admin), member counts, and a clear "Enter workspace" action. Cards use elevated surfaces and subtle gradient highlights to indicate clickability.
+\item \textbf{Create New Organisation:} A prominent, dashed-outline card invites users to create a new organisation — a low-friction onboarding entrypoint that prompts uploading an org chart and inviting team members.
+\item \textbf{Global Controls:} Top-right controls include the user avatar, notification indicator, and sign-out action, ensuring profile and session actions are always accessible.
+\item \textbf{Visual Theme:} The homepage uses a dark, professional gradient with soft spotlights to focus attention on the organisation cards and primary CTA, matching the aesthetics shown in the screenshots.
 \end{itemize}
 
-\subsubsection{Bottleneck Analysis}
-A unique feature of AgentiX is the \textbf{Bottleneck Analysis} module. Instead of a passive list, the system actively identifies and flags departments or individuals causing delays.
+This screen is intentionally lightweight: it reduces cognitive load by surfacing only organisational entry points and primary next steps, guiding users quickly into the document submission and approval workflow.
 
-\begin{itemize}
-\item \textbf{Visual Alerts:} Color-coded cards (Red/Yellow/Green) highlight critical delays (e.g., "Critical Bottleneck: Finance Department - 8 documents pending $>$ 3 days").
-\item \textbf{Root Cause Indicators:} This feature transforms raw data into actionable insight, helping administrators pinpoint exactly where workflows are stalling.
-\end{itemize}
+\vspace{1em}
 
-\subsubsection{Document Queue \& Timeline}
-The detailed document list utilizes a tabular layout enriched with:
+\subsection{Document Upload and Processing}
 
-\begin{itemize}
-\item \textbf{Status Badges:} Distinct, accessible colors for various states (Pending, In-Review, Approved, Rejected) allow for quick scanning of large datasets.
-\item \textbf{Progress Bars:} Visual indicators of how far along a document is in its lifecycle (e.g., 33\%, 67\%).
-\item \textbf{Detailed Timeline Modal:} Clicking a document opens a \texttt{Dialog} component containing a granular history view. This view shows exactly who approved what, when, and any associated comments, providing a complete audit trail at a glance.
-\end{itemize}
-
+\subsubsection{Intelligent Document Submission Interface}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{image/approval_dashboard_placeholder.png}
-    \caption{AgentiX Approval Dashboard}
+    \includegraphics[width=0.85\linewidth]{image/chat_document_upload_placeholder.png}
+    \caption{Submit Document interface: conversational AI-driven workflow with quick-start templates (Contract Approval, Multi-dept Review, Quick Approval, Custom Workflow) and a chat-based document submission area.}
+    \label{fig:document_submission}
+\end{figure}
+
+The Document Submission interface (Figure~\ref{fig:document_submission}) represents the functional heart of AgentiX, guiding users through an intuitive, conversational workflow initiation process. Instead of static forms, the interface employs a modern chat-like paradigm combined with pre-configured templates:
+
+\begin{itemize}
+\item \textbf{Headline and Value Proposition:} ``Intelligent Document Workflow'' with supporting copy: ``Upload a document or describe your approval needs. AI will analyze, classify, and propose the optimal workflow.'' This immediately communicates the AI-driven automation capability to users.
+\item \textbf{Quick-Start Templates:} Four pre-built workflow templates accelerate common use cases: ``Contract Approval'' (Legal \& Finance review), ``Multi-dept Review'' (Cross-department workflow), ``Quick Approval'' (Simple routing), and ``Custom Workflow'' (Advanced rules \& routing). Each template displays a descriptive subtitle and arrow affordance to encourage selection.
+\item \textbf{Conversational Input:} A large text area prompts users to ``Describe your workflow needs or upload a document...'' The conversational framing reduces friction compared to traditional multi-step forms. Users can type natural-language requirements or upload files; the AI assistant parses both modalities.
+\item \textbf{AI Model Selection:} A dropdown selector displays the active AI provider (e.g., ``Gemini 3 Pro'') with a \texttt{default} tag, allowing advanced users to manually override the model if needed. This transparency builds trust in the AI system.
+\item \textbf{Chat History Panel:} A left sidebar lists previous conversations under ``Chat History,'' enabling users to reference or rerun earlier workflow configurations.
+\end{itemize}
+
+\subsubsection{Workflow Tracking and Details View}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\linewidth]{image/approval_dashboard_placeholder.png}
+    \caption{Workflow Details modal: displays document metadata (ID, priority, deadline), approval flow steps with status (completed/in-progress), approver information, and approval history with timestamps and comments.}
+    \label{fig:workflow_details}
+\end{figure}
+
+Once a document is submitted and processing begins, users gain real-time visibility into the approval progress through the Workflow Details view (Figure~\ref{fig:workflow_details}). This modal interface surfaces critical information for both submitters and administrators:
+
+\begin{itemize}
+\item \textbf{Document Metadata:} Header displays the document title (e.g., ``Vendor Service Agreement - TechCorp'') with a ``Modify Flow'' button for workflow changes. Below, key attributes are presented: Document ID (e.g., ``DOC-001''), Priority (colour-coded, e.g., Red for ``high''), and Deadline (e.g., ``2024-01-05'').
+\item \textbf{Approval Flow Visualization:} A vertical timeline shows each approval step (e.g., ``Submitted,'' ``Manager Review,'' ``Executive Approval'') with status badges. Completed steps display green checkmarks with timestamps; in-progress steps show blue indicators with assignee names (e.g., ``Ms. Anderson - VP of Operations'').
+\item \textbf{Approver Information:} For each step, the interface displays the responsible approver's name and title, and their current decision status. If a decision is pending, the UI clearly indicates ``In Progress.''
+\item \textbf{Approval History:} A scrollable history section records all actions chronologically, including timestamps, actor names, decisions (e.g., ``has approved the document, proceed to the next step''), and optional comments. This creates an immutable audit trail visible to all workflow participants.
+\item \textbf{Action Controls:} Depending on user role, action buttons (e.g., ``View Details,'' ``Modify Flow'') appear, enabling users to inspect deeper detail, override routing decisions, or escalate for urgent approval.
+\end{itemize}
+
+This design ensures that submitters and approvers maintain continuous situational awareness throughout the document lifecycle, reducing uncertainty and enabling proactive escalation if workflows stall.
+
+\vspace{1em}
+
+\subsection{Approval Dashboard and Compilation Monitoring}
+
+\subsubsection{Analytics and Performance Metrics Dashboard}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/approval_compilation_monitoring.png}
+    \caption{Analytics Dashboard: displays high-level workflow metrics (total workflows, completed, in-progress, awaiting first approval, rejected), workflow timing analysis, signing activity patterns by hour and weekday, and per-approver throughput metrics.}
+    \label{fig:analytics_dashboard}
+\end{figure}
+
+The Analytics Dashboard (Figure~\ref{fig:analytics_dashboard}) provides comprehensive, real-time visibility into organizational approval performance and system health. It is designed to serve both operational managers (monitoring SLAs and bottlenecks) and executives (tracking efficiency metrics):
+
+\begin{itemize}
+\item \textbf{Key Performance Indicators (KPIs):} The top row displays four critical metrics at a glance: Total Workflows (36), Completed (2, 6\% completion rate), In Progress (12), Awaiting First Approval (22), and Rejected (0). Colour-coded icons (green for completed, blue for in-progress, orange for awaiting, red for rejected) enable instant visual recognition of workflow state distribution.
+\item \textbf{Workflow Timing Analysis:} A card titled ``Workflow Timing'' breaks down approval durations: Average Completion (13m), Median Completion (13m), Average Step Duration (35m), Fastest Workflow (9m), and Slowest Workflow (18m). These metrics help identify whether workflows are performing within SLAs and whether specific steps are causing delays.
+\item \textbf{Signing Activity Patterns:} Two time-series charts visualize when signatures occur: ``Signing activity by hour'' shows peak signature times during the business day, while ``Signing activity by weekday'' reveals which days carry the highest load (e.g., Monday through Thursday may show higher activity than Friday). These patterns inform staffing and system capacity planning.
+\item \textbf{Per-Approver Throughput:} A table lists individual approvers with their approval counts and average response times (e.g., Apichat Ruangsuk: 14 approvals, 0.8h avg; Jitkapat Tanusak: 3 approvals, 0.1h avg; Attapol Jirapiwat: 2 approvals, 0.0h avg; Pakawat Phasook: 2 approvals). This granular view enables managers to identify bottleneck approvers and redistribute workload if needed.
+\end{itemize}
+
+\subsubsection{Approval Dashboard for Document Queue Management}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/admin_console_department.png}
+    \caption{Approval Dashboard: displays pending approvals (28), completed today (0), overdue items (28), average processing time, searchable document queue with status tabs (Documents, Workflow View, Analytics), and pending/completed document lists with priority and progress tracking.}
     \label{fig:approval_dashboard}
 \end{figure}
+
+The Approval Dashboard (Figure~\ref{fig:approval_dashboard}) consolidates organizational approval tasks into a unified, actionable command center for approvers, team leads, and administrators:
+
+\begin{itemize}
+\item \textbf{Dashboard Title and Headline:} The page title ``Approval Dashboard'' with the supporting tagline ``Monitor and manage document approvals across your organization'' immediately communicates the page's purpose and scope.
+\item \textbf{Top-Level Status Cards:} Four prominently displayed cards summarize the current approval state: Pending Approvals (28, with a clock icon indicating time-sensitivity), Completed Today (0, with green checkmark), Overdue Items (28, with warning triangle alert), and Average Processing Time (with upward trend icon). Colour-coding and icon usage enable quick scanning.
+\item \textbf{Search and Filter Controls:} A search bar (``Search documents, submitters, or types...'') enables rapid lookup of specific workflows. A filter button (``All Statuses'') allows users to drill down by status, priority, assignee, or other dimensions, reducing noise and focusing attention on actionable items.
+\item \textbf{Tabbed Views:} Three tabs organize documents by perspective: ``Documents'' (default view showing document-centric queue), ``Workflow View'' (displaying approval steps and routing logic), and ``Analytics'' (showing high-level metrics and trends). Users can switch context without leaving the dashboard.
+\item \textbf{Pending Approvals Queue:} A section titled ``Pending (28)'' lists documents awaiting action. Each row displays: document filename, submitter name, status badge (``pending''), priority level (``high'', colour-coded), submission timestamp, and action buttons (``Details,'' ``Review''). The visual design uses progress bars or percentage indicators to show how far the workflow has progressed.
+\item \textbf{Completed Approvals Queue:} A complementary section titled ``Completed (2)'' shows workflows that have reached terminal states. Each row displays similar metadata but with completion status and timestamps, allowing users to audit historical decisions.
+\item \textbf{Workflow Progress Visualization:} Horizontal progress bars show the completion percentage for each document, providing at-a-glance status without requiring users to drill into details.
+\end{itemize}
+
+Together, these two dashboards enable organizations to operate transparently: approvers see their individual workload and response metrics; administrators and executives track system health, throughput, and bottlenecks; and all stakeholders can quickly identify and escalate documents that require attention.
 
 \vspace{1em}
 
 \subsection{Administration Console}
 
-The Admin module handles the governance, security configuration, and user management aspects of the platform. It uses a \texttt{Tabs} interface to separate distinct administrative domains.
+The Administration Console is a multi-faceted control centre where system administrators configure organizational structure, manage users, define approval policies, and monitor system compliance. The console employs a tabbed interface to organize distinct administrative concerns while maintaining consistent branding and navigation.
 
-\subsubsection{Security \& Compliance Hub}
-This section allows administrators to enforce high-level security policies:
-
-\begin{itemize}
-\item \textbf{Compliance Toggles:} Simple switches allow admins to enable/disable specific regulatory frameworks (GDPR, PDPA, ISO 27001). Toggling these would dynamically adjust system validation rules in the backend.
-\item \textbf{Encryption Management:} Controls for selecting encryption standards (AES-256 vs. AES-128) and data retention periods.
-\item \textbf{Real-time Monitoring:} A "dashboard within a dashboard" showing the status of Threat Detection, Encryption Integrity, and System Health, giving admins peace of mind regarding platform integrity.
-\end{itemize}
-
-\subsubsection{User \& Role Management}
-Standard CRUD (Create, Read, Update, Delete) operations for user accounts are enhanced with:
-
-\begin{itemize}
-\item \textbf{Role-Based Access Control (RBAC):} Assignment of specific roles (Manager, Director, Admin) that dictate permission levels across the app.
-\item \textbf{Activity Status:} Monitoring of user status (Active/Inactive) and last login times helps in identifying dormant accounts that may pose a security risk.
-\end{itemize}
-
-\subsubsection{Audit Logs}
-A comprehensive, immutable ledger of all system activities.
-
-\begin{itemize}
-\item \textbf{Granular Detail:} Logs capture Timestamp, User, Action (e.g., "Workflow Modified"), IP Address, and Result (Success/Failure).
-\item \textbf{Search \& Filter:} Robust tools allow admins to filter logs by success/failure or search by specific user IDs, facilitating rapid incident investigation.
-\end{itemize}
-
+\subsubsection{Organization Structure and Department Management}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{image/admin_console_placeholder.png}
-    \caption{AgentiX Administration Console}
-    \label{fig:admin_console}
+    \includegraphics[width=0.9\linewidth]{image/admin_console_department.png}
+    \caption{Department Management interface: displays organizational hierarchy with department cards (Executive, Accounting \& Finance, Business Development, HR \& Operations, Marketing, Technology, Product, Delivery, QA, PMO) showing member counts, sub-department relationships, and action controls (edit, delete).}
+    \label{fig:department_management}
 \end{figure}
+
+The Department Management interface (Figure~\ref{fig:department_management}) enables administrators to visualize and maintain the organizational hierarchy. This hierarchical view directly influences approval routing logic, as the AI classification engine and workflow builder use this structure to propose appropriate approval chains:
+
+\begin{itemize}
+\item \textbf{Section Header:} ``Department Management'' with supporting text: ``Manage organization departments and hierarchy.'' A ``Refresh'' button enables re-sync with upstream HR systems, while an ``Add Department'' button allows manual creation of new organizational units.
+
+\item \textbf{Department Hierarchy Display:} The interface shows a structured list of 10 departments organized under an ``Executive'' parent node. Sub-departments are visually indented to show nesting (e.g., Accounting \& Finance, Business Development, HR \& Operations, Marketing, Technology are at L1 level; Technology is shown as a parent with Product, Delivery, QA, PMO as L1 children).
+
+\item \textbf{Department Card Details:} Each department row displays: a folder/department icon, department name, level indicator (e.g., ``L1''), member count (e.g., ``1 / 4'' showing current members vs. capacity), and action buttons (edit icon, delete icon). The compact row design allows administrators to scan the entire hierarchy quickly.
+
+\item \textbf{Visual Indicators:} Expansion/collapse arrows allow drill-down into sub-departments. Colour-coding and icons distinguish department levels and parent-child relationships, reducing visual complexity.
+
+\item \textbf{Bulk Actions:} ``Expand all'' and ``Collapse all'' buttons enable rapid toggling of the hierarchy view, useful when managing large organizational structures with many nesting levels.
+\end{itemize}
+
+\subsubsection{Organization Chart Upload and AI Parsing}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/admin_console_orgchart.png}
+    \caption{Organization Chart upload interface: drag-and-drop zone for uploading org chart images/PDFs with AI parsing summary (``AI parsed 10 departments and 44 roles''), department selection checkboxes (Executive, Technology, Business Development, Marketing, Accounting \& Finance, HR \& Operations, Product, Delivery, QA, PMO), and email assignment table by department and role.}
+    \label{fig:orgchart_upload}
+\end{figure}
+
+The Organization Chart Upload interface (Figure~\ref{fig:orgchart_upload}) streamlines the initial onboarding process by automating department and role extraction from visual org charts, significantly reducing manual data-entry burden:
+
+\begin{itemize}
+\item \textbf{Upload Section:} A prominent heading ``Upload Organization Chart'' with supporting text: ``Upload an image or PDF of your organization chart. AI extracts departments and roles automatically — then assign emails to invite each person to AgentiX.'' A large drag-and-drop zone displays a document icon and text: ``Drop your org chart here'' with supported formats (PNG, JPG, WebP, or PDF) listed below. A ``Choose file'' button provides an alternative file picker interface.
+
+\item \textbf{AI Parsing Summary:} After upload, a success badge appears stating: ``AI parsed 10 departments and 44 roles,'' confirming that the extraction was successful and providing quantitative feedback on the detected organizational structure.
+
+\item \textbf{Department Selection:} A section titled ``Departments (10 of 10 selected)'' displays colourful, rounded tag-style buttons for each extracted department (Executive, Technology, Business Development, Marketing, Accounting \& Finance, HR \& Operations, Product, Delivery, QA, PMO). Administrators can uncheck departments to exclude them from the import. A note states: ``Untick a department to skip it on save — both the dept and its roles are excluded.''
+
+\item \textbf{Email Assignment Table:} Below the department selection, a table titled ``Assign emails (9 of 44 filled in selected depts)'' lists roles by department with email-assignment fields. Each row shows the department/role (e.g., Executive / CEO), an email input field (pre-filled or blank), a seniority dropdown (C-Level, Employee, etc.), and a ``Save'' button per row. A note reminds: ``Leave email blank to skip — only filled rows in selected depts are invited.''
+
+\item \textbf{Progressive Disclosure:} Only a few rows are visible initially, with scrolling to reveal more entries. This prevents cognitive overload for large organizations while remaining comprehensive.
+\end{itemize}
+
+\subsubsection{User Management and Role Assignment}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/admin_console_users.png}
+    \caption{User Management interface: displays user table with columns (User, Role, Department, Position, Status, Actions), user records (Pakawat Phasook - admin/Executive/CEO, Attapol Jirapiwat - dept\_head/Accounting \& Finance, Apichat Ruangsuk - manager/Marketing, Jitkapat Tanusak - dept\_head/Product), status badges (active), and action controls (edit, delete).}
+    \label{fig:user_management}
+\end{figure}
+
+The User Management interface (Figure~\ref{fig:user_management}) provides a comprehensive view of all organizational users and their roles within AgentiX. This enables administrators to grant or revoke access and adjust role-based permissions that influence approval routing:
+
+\begin{itemize}
+\item \textbf{Section Header:} ``User Management'' with supporting text: ``Manage user accounts, roles, and departments from the database.'' A ``Refresh'' button synchronizes with upstream systems, and an ``Add User'' button enables manual user creation.
+
+\item \textbf{User Table Columns:} The table displays: User (name and email), Role (e.g., admin, dept\_head, manager), Department (organizational unit), Position (job title), Status (e.g., active badge, green), and Actions (edit and delete icons).
+
+\item \textbf{User Records:} Example rows show:
+  - Pakawat Phasook (superking basskb@gmail.com), Role: admin, Department: Executive, Position: CEO, Status: active
+  - Attapol Jirapiwat (phasook pakawat@gmail.com), Role: dept\_head, Department: Accounting \& Finance, Position: Head of Finance \& Accounting, Status: active
+  - Apichat Ruangsuk (agentix.ai.tech@gmail.com), Role: manager, Department: Marketing, Position: Marketing Manager, Status: active
+  - Jitkapat Tanusak (pakawat.pha@preceptorial.tech), Role: dept\_head, Department: Product, Position: Head of Product, Status: active
+
+\item \textbf{Role Semantics:} The visible roles indicate organizational hierarchy: \textit{admin} for global system administrators; \textit{dept\_head} for departmental leaders who approve documents originating in their department; and \textit{manager} for individual contributors or first-line approvers.
+
+\item \textbf{Inline Actions:} Edit and delete icons in the Actions column allow quick modifications or removal of users without navigating to separate detail pages.
+\end{itemize}
+
+\subsubsection{Approval Policy Configuration}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/admin_console_policy.png}
+    \caption{Approval Policy editor: displays policy file (AGENT.md) with role authorities defined in structured format (admin, c\_level, dept\_head, manager, employee), role-to-threshold mappings, and a right-hand ``How the AI uses this'' panel explaining that the policy is prepended to AI prompts with a ``treat as authoritative'' instruction.}
+    \label{fig:policy_configuration}
+\end{figure}
+
+The Approval Policy Configuration interface (Figure~\ref{fig:policy_configuration}) allows administrators to define role-based approval authorities and thresholds in a declarative format. This policy is automatically incorporated into the AI prompt, ensuring that the agentic classification engine makes routing decisions consistent with organizational compliance requirements:
+
+\begin{itemize}
+\item \textbf{Policy File Editor:} A code editor displays the ``AGENT.md — Approval policy'' file. The file structure defines role authorities and approval thresholds using Markdown with code-block sections:
+  - ``## Role authorities'' section lists roles and their approval permissions (admin, c\_level, dept\_head, manager, employee)
+  - ``## Headcount by role'' section enumerates role distribution (e.g., admin: 1, dept\_head: 2, manager: 1)
+  - ``## Default routing rules'' section specifies fallback routing if AI classification is ambiguous
+
+\item \textbf{Example Policy Content:} The visible policy snippet shows:
+  \begin{itemize}
+  \item \texttt{admin | System administration. Manages users, departments, policies. Does NOT approve business documents by default.}
+  \item \texttt{c\_level | Final approver for high-risk and high-value documents (contracts, anything $\geq$ board threshold).}
+  \item \texttt{dept\_head | Approves documents originating from their department within their authority limit.}
+  \item \texttt{manager | First-line review. Approves day-to-day requests; escalates anything above limit to dept\_head.}
+  \item \texttt{employee | Submits requests; cannot approve.}
+  \end{itemize}
+
+\item \textbf{Right-Hand Guidance Panel:} A complementary panel titled ``How the AI uses this'' explains:
+  ``A user submits a document. AgentiX downloads it and asks Gemini to classify + propose a workflow. This policy is prepended to the prompt with a `treat as authoritative' instruction. The proposed approval chain uses roles/people/thresholds named here instead of generic defaults. Update this file when org structure or authority changes — the next submission picks up the change automatically.''
+
+\item \textbf{Formatting Controls:} A ``Load template'' button enables rapid policy initialization from predefined organizational patterns (e.g., startup, mid-market, enterprise).
+
+\item \textbf{Tip Box:} A highlighted tip advises: ``Be specific with thresholds and roles. 'Finance Head approves PO \$\geq \$ 50\,000\; TRB\; CEO above' works better than 'large purchases need CEO'. The AI matches role names you use in the org chart.''
+\end{itemize}
+
+\subsubsection{Workflow Monitoring and Audit Trail}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/admin_console_workflow.png}
+    \caption{Workflows monitoring interface: displays active approval workflows as a data table with columns (Document, Owner, Steps, Current, Status, Created), showing document names, owners (Apichat Ruangsuk), step counts, current step indicators, status (in progress, completed), and creation timestamps.}
+    \label{fig:workflow_monitoring}
+\end{figure}
+
+The Workflow Monitoring interface (Figure~\ref{fig:workflow_monitoring}) provides administrators with visibility into all active and historical workflows generated from submitted documents. This enables capacity planning, SLA monitoring, and incident investigation:
+
+\begin{itemize}
+\item \textbf{Section Header:} ``Workflows'' with supporting text: ``Approval workflows generated from documents submitted to this organization. Routing comes from each document's AI classification and the org policy (Admin $>$ Policy tab).'' A ``Refresh'' button enables manual synchronization with the backend.
+
+\item \textbf{Workflow Table Columns:} The table displays: Document (filename), Owner (document submitter), Steps (total approval steps), Current (current step indicator), Status (in progress, completed), and Created (timestamp).
+
+\item \textbf{Workflow Records:} Example rows show:
+  - AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 0/4 steps, \#1 - manager, in progress, 5/18/2026, 9:20:50 AM
+  - AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 0/4 steps, \#1 - manager, in progress, 5/18/2026, 8:50:31 AM
+  - LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 0/5 steps, \#1 - manager, in progress, 5/18/2026, 8:22:35 AM
+  - LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 0/5 steps, \#1 - manager, in progress, 5/18/2026, 8:22:16 AM
+  - LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 1/5 steps, \#2 - finance\_head, in progress, 5/18/2026, 8:15:41 AM
+  - AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 4/4 steps, —, completed, 5/17/2026, 11:58:29 PM
+  - AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 4/4 steps, —, completed, 5/17/2026, 10:25:56 PM
+
+\item \textbf{Step Progress Indicator:} The ``Steps'' column shows progress (e.g., 0/4, 1/5, 4/4) enabling administrators to assess how far workflows have progressed. The ``Current'' column indicates which role is currently responsible (e.g., \#1 - manager, \#2 - finance\_head).
+
+\item \textbf{Status Badges:} Status indicators use colour-coding: in progress (blue or neutral), completed (green). This allows rapid scanning of organizational throughput.
+
+\item \textbf{Inline Details:} Administrators can click rows to drill into detailed approval history, SLA tracking, and audit trails for each workflow.
+\end{itemize}
+
+The Administration Console collectively provides the operational foundation for AgentiX. By centralizing organizational structure, user management, policy definition, and workflow monitoring, administrators can ensure that the approval system evolves with the organization and maintains compliance with business rules and regulatory requirements.
 
 \vspace{1em}
 
 \subsection{Signature Module}
 
-This module addresses the cryptographic requirements of the project, ensuring non-repudiation and data integrity.
+The Signature Module is the cryptographic cornerstone of AgentiX, enabling users to capture, store, and apply digital signatures to documents with full audit traceability. The module combines biometric and cryptographic technologies to ensure that each signature is legally defensible, tamper-evident, and verifiable by external parties. The workflow progresses through capture, verification, and embedding phases.
 
-\subsubsection{Signing Interface}
-The "Sign" tab aggregates all documents requiring the user's attention.
-
-\begin{itemize}
-\item \textbf{Pending Requests:} Cards display the document title, requester, deadline, and a cryptographic hash preview.
-\item \textbf{Actionable Controls:} One-click buttons to Review and Sign documents integrate with the secure backend signing service, streamlining the signing process.
-\end{itemize}
-
-\subsubsection{Verification \& Certificates}
-To ensure trust in signed documents, the module includes:
-
-\begin{itemize}
-\item \textbf{Verification Tool:} A drag-and-drop interface where users can upload a signed file. The system mimics the process of checking the digital signature against the public key to verify integrity and authenticity.
-\item \textbf{Certificate Management:} A dedicated view allows users to manage their digital identity certificates, displaying Validity periods, Expiration dates, and Authority chains.
-\item \textbf{Tamper Status:} Visual indicators (Green Check/Red Alert) explicitly show if a document has been modified since signing, providing immediate feedback on document integrity.
-\end{itemize}
-
+\subsubsection{Signature Capture and Cropping Interface}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{image/signature_module_placeholder.png}
-    \caption{AgentiX Digital Signature Interface}
-    \label{fig:signature_module}
+    \caption{Signature capture dialog: upload interface with drag-and-drop zone prompting ``Click to upload'' (PNG, JPG, PDF, up to 10 MB), and initial capture state ready for signature image submission.}
+    \label{fig:signature_capture}
 \end{figure}
 
-\vspace{1em}
-
-\subsection{Documentation \& Support}
-
-To ensure user adoption and reduce support overhead, a comprehensive internal knowledge base is integrated directly into the application.
+The Signature Capture interface (Figure~\ref{fig:signature_capture}) provides an intuitive, mobile-friendly method for users to supply their handwritten signature. The capture process supports multiple input modalities:
 
 \begin{itemize}
-\item \textbf{Categorized FAQs:} An \texttt{Accordion} component organizes common questions covering Submission, Security, and Workflows, allowing users to expand only the topics they are interested in.
-\item \textbf{Interactive Guides:} A library of tutorials (Video/Article) tagged by difficulty (Beginner/Advanced) helps users upskill.
-\item \textbf{API References:} For technical users, a dedicated section details API endpoints, authentication methods, and SDK availability, facilitating integration with external systems.
+\item \textbf{Headline and Purpose:} A clear modal title ``Crop your signature'' with supporting text: ``Upload a photo of your signature on white paper, or a PDF of a signed document. Drag the rectangle to move it; drag any handle to resize.'' This immediately communicates the expected input format and user control model.
+
+\item \textbf{Upload Zone:} A large, dashed-border drop zone displays a document icon and text: ``Click to upload'' with supported formats listed (PNG, JPG, PDF) and file-size limit (up to 10 MB). The drag-and-drop affordance encourages visual users to supply signature images without navigating the file system.
+
+\item \textbf{Primary Action Button:} A ``Use this crop'' button (styled in prominent purple) is initially disabled until a valid signature image is uploaded. Once an image is available, the button enables, allowing users to proceed to the cropping/verification step.
+
+\item \textbf{Modal Close:} An ``X'' button in the top-right corner allows users to dismiss the modal without submitting a signature, supporting a low-friction exit path.
 \end{itemize}
+
+\subsubsection{Signature Cropping and Processing}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/signature_module_placeholder_2.png}
+    \caption{Signature cropping interface: uploaded signature image with interactive crop box (resize handles), zoom slider (0-100\%), ``Reset'' button, preview area showing cropped signature (``Apichat Ruangsuk''), checkbox for ``Remove white background (transparent PNG)'', and action buttons (``Pick different file'' / ``Use this crop'').}
+    \label{fig:signature_cropping}
+\end{figure}
+
+The Signature Cropping interface (Figure~\ref{fig:signature_cropping}) provides precise control over the signature region extracted from the uploaded image. This step ensures that only the actual signature is retained, removing extraneous background:
+
+\begin{itemize}
+\item \textbf{Interactive Crop Region:} A resizable rectangular crop box is overlaid on the uploaded image. Visible corner and edge handles allow users to drag and resize the region. Visual feedback (purple dashed outline) indicates the active crop area.
+
+\item \textbf{Zoom Control:} A zoom slider (0--100\%) enables users to magnify or reduce the image for precise positioning. A ``Reset'' button restores the original zoom level and crop box position, supporting easy correction if the user makes undesired adjustments.
+
+\item \textbf{Live Preview:} As users adjust the crop box, a live preview appears in the right panel, showing the extracted signature (e.g., text reading ``Apichat Ruangsuk''). This real-time feedback prevents surprises when finalizing the crop.
+
+\item \textbf{Background Removal Option:} A checkbox labeled ``Remove white background (transparent PNG)'' enables automated background removal, converting white pixels to transparency. This is useful for signatures captured on plain paper, allowing seamless embedding onto documents with varied background colours.
+
+\item \textbf{Action Buttons:} Two buttons at the bottom right:
+  - ``Pick different file'': Allows users to discard the current image and upload a new one without restarting the modal.
+  - ``Use this crop'' (purple, prominent): Submits the cropped signature for storage and subsequent use in document signing.
+\end{itemize}
+
+\subsubsection{Document Signing Workflow}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/signature_module_placeholder_3.png}
+    \caption{Sign Documents interface: two-column layout with left panel showing ``1. Upload PDF'' (drag-and-drop zone for PDFs up to 25 MB), and right panel showing ``2. Pick a signature'' (signature card displaying ``Pakawat Phasook''), ``4. Sign + download'' with a ``Sign + embed'' button. Includes security note about RSA-2048 + SHA-256 encryption.}
+    \label{fig:document_signing}
+\end{figure}
+
+The Document Signing workflow (Figure~\ref{fig:document_signing}) orchestrates the end-to-end process of applying a digital signature to an approved document. The interface guides users through a clear, step-by-step progression:
+
+\begin{itemize}
+\item \textbf{Page Title and Value Proposition:} ``Sign Documents'' with supporting text: ``Upload a PDF, pick a signature, drag it to the right spot. The AI suggests positions; you decide.'' This immediately conveys the workflow's purpose and human-in-the-loop nature.
+
+\item \textbf{Security Information Banner:} A blue info box states: ``RSA-2048 + SHA-256. Each signed PDF is hashed, the hash is signed with the platform's private key, and both are stored. Any byte change after signing invalidates verification.'' This transparent communication reassures users and administrators about cryptographic strength and tamper-detection capability.
+
+\item \textbf{Tabbed Navigation:} Three tabs organize the workflow: ``Sign Document'' (default, active state), ``History'' (previous signatures), and ``Audit Trail'' (immutable log). Users can switch between views without losing progress.
+
+\item \textbf{Step 1: Upload PDF:} A left-side card titled ``1. Upload PDF'' displays a dashed-border drop zone with a document icon and text ``Click to upload PDF'' with file-size limit (up to 25 MB). Clicking or dragging a PDF into this zone initiates the upload.
+
+\item \textbf{Step 2: Pick a Signature:} A right-side card titled ``2. Pick a signature'' displays available signatures. A signature card shows the signer's name (``Pakawat Phasook'') and a visual signature preview. An ``+ Add new'' button allows users to register additional signatures if the desired one is unavailable.
+
+\item \textbf{Step 4: Sign + Download:} Below the signature picker, a card titled ``4. Sign + download'' contains the action button ``Sign + embed'' (purple, prominent). A placeholder note states ``Upload a PDF first,'' indicating that the button is disabled until a valid PDF is uploaded. Once both a PDF and signature are selected, the button enables.
+
+\item \textbf{User-Directed Placement:} The workflow note mentions ``drag it to the right spot,'' implying that after a PDF is uploaded, users can interact with a canvas to position the signature on the document page. AI-assisted suggestions help speed placement, but final placement authority rests with the user.
+
+\item \textbf{Output Artifact:} Clicking ``Sign + embed'' triggers the signing operation: the document is hashed (SHA-256), the hash is digitally signed (RSA-2048 with the platform's private key), and the signature is embedded into the PDF. The resulting signed PDF is offered for download, and a copy is archived for audit and verification.
+\end{itemize}
+
+\subsubsection{Signature Management and History}
+
+The Signature Module includes supplementary features that provide long-term manageability and auditability:
+
+\begin{itemize}
+\item \textbf{Signature Registry:} Users can store multiple signatures (e.g., formal signature, initials, alternative script) and label them for easy identification. The module presents a list of available signatures during document signing, allowing selection based on context (e.g., formal approval vs. acknowledgment).
+
+\item \textbf{History Tab:} A chronological record of all signatures applied by the user, including document names, timestamps, and verification status. Users can export or re-download previously signed documents without re-signing.
+
+\item \textbf{Audit Trail Tab:} An immutable, cryptographically chained log of all signing events, including: signer identity, document hash, signature hash, timestamp (from trusted time-stamping authority), and verification results. This audit trail satisfies regulatory requirements (e.g., eIDAS, GDPR) and supports forensic investigations if tampering is suspected.
+
+\item \textbf{Verification Service:} AgentiX exposes a public verification endpoint that accepts a signed PDF and returns: signature validity (tamper-free or compromised), signer identity, signing timestamp, and certificate chain status. External parties can verify document authenticity without requiring internal credentials, supporting B2B workflows and legal defensibility.
+\end{itemize}
+
+The Signature Module thus transforms document approval from a procedural step into a legally defensible, auditable artifact. Combined with the organizational workflow engine and compliance policies, it ensures that AgentiX-processed documents are indisputable records of organizational decision-making.
+
+\vspace{1em}
 
 \subsection{Conclusion}
 
