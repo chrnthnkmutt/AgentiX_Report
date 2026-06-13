@@ -23,7 +23,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{cpe-grad}[2016/05/30 CPE,KMUTT latex class]
+\ProvidesClass{cpe-english-project}[2016/05/30 CPE,KMUTT latex class]
 \LoadClass{report}
 \typeout{Document Style `CPE thesis/report'.}
 \newcommand{\dotrule}[1]{% 
@@ -47,7 +47,16 @@
 %    linktoc=all,     %set to all if you want both sections and subsections linked
     linkcolor=blue,  %choose some color if you want links to stand out
 }
-
+\providecommand*{\toclevel@chapterx}{0}
+\providecommand*{\toclevel@chapterxx}{0}
+\pdfstringdefDisableCommands{%
+  \def\hskip#1{}%
+  \def\kern#1{}%
+  \def\bf{}%
+  \def\mdseries{}%
+  \def\normalsize{}%
+  \def\MakeUppercase#1{#1}%
+}
 
 %%%% For using thaifonts
 %%% Comment out if using Polyglossia package
@@ -796,4 +805,3 @@ Credits & \disscredit \\
 
 % *******************************************************************
 \endinput
-

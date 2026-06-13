@@ -16,6 +16,8 @@
   BoldItalicFont=THSarabunNew BoldItalic.ttf
 ]{THSarabunNew}
 \emergencystretch=10pt
+\hbadness=10000
+\hfuzz=4pt
 
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -27,7 +29,7 @@
 \usepackage{afterpage}
 \usepackage{xurl}
 \usepackage{hyperref}
-\usepackage{caption}
+\usepackage{capt-of}
 \Urlmuskip=0mu plus 2mu\relax
 \renewcommand{\bibname}{REFERENCES}
 
@@ -85,8 +87,10 @@
 \end{center}
 \vspace*{-1cm}
 
+\hypersetup{pageanchor=false}
 \maketitlepage
 \makesignaturepage
+\hypersetup{pageanchor=true}
 
 \abstract
 
@@ -326,7 +330,7 @@ security-by-design practices, and rigorous evaluation to ensure the web
 application, Agentic AI services, and digital signature pipeline operate
 cohesively across both enterprise-private and cloud-deployed offerings.
 
-\subsubsection{\texorpdfstring{\emph{Phase 1: Stakeholder Requirement Elicitation and Compliance Analysis}}{Phase 1: Stakeholder Requirement Elicitation and Compliance Analysis}}
+\subsection{\texorpdfstring{\emph{Phase 1: Stakeholder Requirement Elicitation and Compliance Analysis}}{Phase 1: Stakeholder Requirement Elicitation and Compliance Analysis}}
 
 \begin{itemize}
 \item Conduct structured interviews with C-level approvers, process
@@ -344,7 +348,7 @@ defines multi-tenant boundaries, admin role provisioning, and service
 level objectives.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{\emph{Phase 2: Data Acquisition and Document Understanding Pipeline}}{Phase 2: Data Acquisition and Document Understanding Pipeline}}
+\subsection{\texorpdfstring{\emph{Phase 2: Data Acquisition and Document Understanding Pipeline}}{Phase 2: Data Acquisition and Document Understanding Pipeline}}
 
 \begin{itemize}
 \item Curate a representative corpus of approval artefacts (contracts,
@@ -361,7 +365,7 @@ identify obligations, and infer the most appropriate approver roles
 before the workflow engine issues assignments.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{\emph{Phase 3: Agentic Workflow Orchestration Design}}{Phase 3: Agentic Workflow Orchestration Design}}
+\subsection{\texorpdfstring{\emph{Phase 3: Agentic Workflow Orchestration Design}}{Phase 3: Agentic Workflow Orchestration Design}}
 
 \begin{itemize}
 \item Architect a multi-agent workflow where an orchestration agent
@@ -380,7 +384,7 @@ organisation's identity and access management (IAM) service via SCIM or
 LDAP adapters.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{\emph{Phase 4: Digital Signature and Bit-Matching Validation Subsystem}}{Phase 4: Digital Signature and Bit-Matching Validation Subsystem}}
+\subsection{\texorpdfstring{\emph{Phase 4: Digital Signature and Bit-Matching Validation Subsystem}}{Phase 4: Digital Signature and Bit-Matching Validation Subsystem}}
 
 \begin{itemize}
 \item Engineer the digital signature service using hardware-backed key
@@ -397,7 +401,7 @@ and stylised signatures onto the PDF artefact while maintaining the
 integrity of the cryptographic envelope.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{\emph{Phase 5: Platform Implementation and Deployment Blueprint}}{Phase 5: Platform Implementation and Deployment Blueprint}}
+\subsection{\texorpdfstring{\emph{Phase 5: Platform Implementation and Deployment Blueprint}}{Phase 5: Platform Implementation and Deployment Blueprint}}
 
 \begin{itemize}
 \item Develop the web application using a modular front-end (for
@@ -414,7 +418,7 @@ provisioning pipelines, and monitoring that enforces availability and
 throughput commitments.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{\emph{Phase 6: Verification, Validation, and Evaluation}}{Phase 6: Verification, Validation, and Evaluation}}
+\subsection{\texorpdfstring{\emph{Phase 6: Verification, Validation, and Evaluation}}{Phase 6: Verification, Validation, and Evaluation}}
 
 \begin{itemize}
 \item Define quantitative KPIs covering classification accuracy,
@@ -633,7 +637,7 @@ Portion = 3 \%
 
 \vspace{1em}
 
-\subsubsection{\texorpdfstring{\textbf{Submission Timeline}}{Submission Timeline}}
+\subsection{\texorpdfstring{\textbf{Submission Timeline}}{Submission Timeline}}
 
 \textbf{Semester 1}
 
@@ -1325,7 +1329,7 @@ Key takeaways from the competitor analysis are:
 \item Flexible BPM frameworks enable powerful integrations, although organisations must assemble security, data governance, and document intelligence on their own.
 \end{itemize}
 
-These gaps expose an opportunity for AgentiX to couple document understanding, adaptive routing, credential-aware signing, and lifecycle analytics in one governed platform.
+These gaps expose an opportunity for AgentiX to couple document understanding, adaptive routing, credential-aware signing, and lifecycle analytics in one governed platform.\sloppy
 
 \newpage
 
@@ -1565,7 +1569,7 @@ The system supports dual deployment models: a managed cloud service with multi-t
 
 \section{Layer-by-Layer Architecture}
 
-\subsubsection{Client Layer}
+\subsection{Client Layer}
 
 The client layer provides three distinct user interfaces, each optimized for specific roles within the approval workflow:
 
@@ -1581,7 +1585,7 @@ All client applications communicate exclusively with the Edge and Security layer
 
 \newpage
 
-\subsubsection{Edge and Security Layer}
+\subsection{Edge and Security Layer}
 
 This layer serves as the security perimeter for the entire platform, implementing multiple defense mechanisms before requests reach application services:
 
@@ -1609,7 +1613,7 @@ After successful authentication, the API Gateway establishes mTLS connections wi
 
 \vspace{1em}
 
-\subsubsection{Application and Workflow Layer}
+\subsection{Application and Workflow Layer}
 
 The application layer orchestrates core business logic and workflow execution through three primary components:
 
@@ -1623,7 +1627,7 @@ The application layer orchestrates core business logic and workflow execution th
 
 \vspace{1em}
 
-\subsubsection{Workers Layer}
+\subsection{Workers Layer}
 
 The workers layer implements specialized microservices, each responsible for a discrete processing task within the document lifecycle. This architecture enables independent scaling, fault isolation, and technology-specific optimizations:
 
@@ -1647,7 +1651,7 @@ The workers layer implements specialized microservices, each responsible for a d
 
 \vspace{1em}
 
-\subsubsection{PKI and Cryptography Zone}
+\subsection{PKI and Cryptography Zone}
 
 The PKI layer provides the cryptographic foundation for all signature operations, implementing industry-standard certificate authority functionality with defense-in-depth security:
 
@@ -1669,7 +1673,7 @@ The PKI layer provides the cryptographic foundation for all signature operations
 
 \vspace{1em}
 
-\subsubsection{Data Plane}
+\subsection{Data Plane}
 
 The data plane provides persistent storage for all platform data, optimized for different access patterns and durability requirements:
 
@@ -1685,7 +1689,7 @@ The data plane provides persistent storage for all platform data, optimized for 
 
 \vspace{1em}
 
-\subsubsection{Observability and Operations Layer}
+\subsection{Observability and Operations Layer}
 
 The observability layer provides comprehensive visibility into system behavior, supporting proactive monitoring, incident response, and capacity planning:
 
@@ -1770,11 +1774,10 @@ AgentiX provides multiple integration mechanisms to embed within existing enterp
 The following table summarizes key technology choices across architectural layers:
 
 \begin{table}[h!]
-\captionsetup{skip=10pt}
 \centering
-\small
+\footnotesize
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|p{0.30\textwidth}|p{0.65\textwidth}|}
+\begin{tabular}{|p{0.28\textwidth}|p{0.60\textwidth}|}
 \hline
 \textbf{Component} & \textbf{Technology Options} \\ \hline
 Frontend Applications & React Next.js, React Native, TypeScript \\ \hline
@@ -1811,7 +1814,7 @@ The AgentiX architecture adheres to the following design principles:
 
 \item \textbf{Event-Driven Architecture:} Asynchronous event streaming through Kafka decouples services, enabling independent scaling and fault isolation while maintaining eventual consistency.
 
-\item \textbf{Operational Excellence:} Comprehensive observability, automated deployment pipelines, and infrastructure-as-code practices ensure reliable operations at scale.
+\item \textbf{Operational Excellence:} Comprehensive observability, automated deployment pipelines, and infrastructure-as-code practices ensure reliable operations at scale.\sloppy
 
 \item \textbf{Standards Compliance:} Adherence to established standards (RFC 3161 for timestamps, RFC 6960 for OCSP, PAdES for PDF signatures) ensures interoperability and legal defensibility.
 \end{itemize}
@@ -2316,9 +2319,9 @@ The Approval Policy Configuration interface (Figure~\ref{fig:policy_configuratio
 
 \begin{itemize}
 \item \textbf{Policy File Editor:} A code editor displays the ``AGENT.md — Approval policy'' file. The file structure defines role authorities and approval thresholds using Markdown with code-block sections:
-  - ``## Role authorities'' section lists roles and their approval permissions (admin, c\_level, dept\_head, manager, employee)
-  - ``## Headcount by role'' section enumerates role distribution (e.g., admin: 1, dept\_head: 2, manager: 1)
-  - ``## Default routing rules'' section specifies fallback routing if AI classification is ambiguous
+  - ``\#\# Role authorities'' section lists roles and their approval permissions (admin, c\_level, dept\_head, manager, employee)
+  - ``\#\# Headcount by role'' section enumerates role distribution (e.g., admin: 1, dept\_head: 2, manager: 1)
+  - ``\#\# Default routing rules'' section specifies fallback routing if AI classification is ambiguous
 
 \item \textbf{Example Policy Content:} The visible policy snippet shows:
   \begin{itemize}
@@ -2334,7 +2337,7 @@ The Approval Policy Configuration interface (Figure~\ref{fig:policy_configuratio
 
 \item \textbf{Formatting Controls:} A ``Load template'' button enables rapid policy initialization from predefined organizational patterns (e.g., startup, mid-market, enterprise).
 
-\item \textbf{Tip Box:} A highlighted tip advises: ``Be specific with thresholds and roles. 'Finance Head approves PO \$\geq \$ 50\,000\; TRB\; CEO above' works better than 'large purchases need CEO'. The AI matches role names you use in the org chart.''
+\item \textbf{Tip Box:} A highlighted tip advises: ``Be specific with thresholds and roles. 'Finance Head approves PO above 50,000 THB; CEO above that threshold' works better than 'large purchases need CEO'. The AI matches role names you use in the org chart.''
 \end{itemize}
 
 \subsubsection{Workflow Monitoring and Audit Trail}
