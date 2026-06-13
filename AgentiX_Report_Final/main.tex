@@ -2356,13 +2356,15 @@ The Workflow Monitoring interface (Figure~\ref{fig:workflow_monitoring}) provide
 \item \textbf{Workflow Table Columns:} The table displays: Document (filename), Owner (document submitter), Steps (total approval steps), Current (current step indicator), Status (in progress, completed), and Created (timestamp).
 
 \item \textbf{Workflow Records:} Example rows show:
-  - AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 0/4 steps, \#1 - manager, in progress, 5/18/2026, 9:20:50 AM
-  - AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 0/4 steps, \#1 - manager, in progress, 5/18/2026, 8:50:31 AM
-  - LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 0/5 steps, \#1 - manager, in progress, 5/18/2026, 8:22:35 AM
-  - LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 0/5 steps, \#1 - manager, in progress, 5/18/2026, 8:22:16 AM
-  - LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 1/5 steps, \#2 - finance\_head, in progress, 5/18/2026, 8:15:41 AM
-  - AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 4/4 steps, —, completed, 5/17/2026, 11:58:29 PM
-  - AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 4/4 steps, —, completed, 5/17/2026, 10:25:56 PM
+  \begin{itemize}
+  \item AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 0/4 steps, \#1 - manager, in progress, 5/18/2026, 9:20:50 AM
+  \item AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 0/4 steps, \#1 - manager, in progress, 5/18/2026, 8:50:31 AM
+  \item LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 0/5 steps, \#1 - manager, in progress, 5/18/2026, 8:22:35 AM
+  \item LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 0/5 steps, \#1 - manager, in progress, 5/18/2026, 8:22:16 AM
+  \item LaunchPad\_marketing\_promotion.pdf, Apichat Ruangsuk, 1/5 steps, \#2 - finance\_head, in progress, 5/18/2026, 8:15:41 AM
+  \item AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 4/4 steps, —, completed, 5/17/2026, 11:58:29 PM
+  \item AgentiX\_product\_promotion\_approval.pdf, Apichat Ruangsuk, 4/4 steps, —, completed, 5/17/2026, 10:25:56 PM
+  \end{itemize}
 
 \item \textbf{Step Progress Indicator:} The ``Steps'' column shows progress (e.g., 0/4, 1/5, 4/4) enabling administrators to assess how far workflows have progressed. The ``Current'' column indicates which role is currently responsible (e.g., \#1 - manager, \#2 - finance\_head).
 
@@ -2383,7 +2385,7 @@ The Signature Module is the cryptographic cornerstone of AgentiX, enabling users
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{image/signature_module_placeholder.png}
-    \caption{Signature capture dialog: upload interface with drag-and-drop zone prompting ``Click to upload'' (PNG, JPG, PDF, up to 10 MB), and initial capture state ready for signature image submission.}
+    \caption{Sign Documents interface: two-column layout with left panel showing ``1. Upload PDF'' (drag-and-drop zone for PDFs up to 25 MB), and right panel showing ``2. Pick a signature'' (signature card displaying ``Pakawat Phasook''), ``4. Sign + download'' with a ``Sign + embed'' button. Includes security note about RSA-2048 + SHA-256 encryption.}
     \label{fig:signature_capture}
 \end{figure}
 
@@ -2403,7 +2405,7 @@ The Signature Capture interface (Figure~\ref{fig:signature_capture}) provides an
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{image/signature_module_placeholder_2.png}
-    \caption{Signature cropping interface: uploaded signature image with interactive crop box (resize handles), zoom slider (0-100\%), ``Reset'' button, preview area showing cropped signature (``Apichat Ruangsuk''), checkbox for ``Remove white background (transparent PNG)'', and action buttons (``Pick different file'' / ``Use this crop'').}
+    \caption{Signature capture dialog: upload interface with drag-and-drop zone prompting ``Click to upload'' (PNG, JPG, PDF, up to 10 MB), and initial capture state ready for signature image submission.}
     \label{fig:signature_cropping}
 \end{figure}
 
@@ -2427,7 +2429,7 @@ The Signature Cropping interface (Figure~\ref{fig:signature_cropping}) provides 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{image/signature_module_placeholder_3.png}
-    \caption{Sign Documents interface: two-column layout with left panel showing ``1. Upload PDF'' (drag-and-drop zone for PDFs up to 25 MB), and right panel showing ``2. Pick a signature'' (signature card displaying ``Pakawat Phasook''), ``4. Sign + download'' with a ``Sign + embed'' button. Includes security note about RSA-2048 + SHA-256 encryption.}
+    \caption{Signature cropping interface: uploaded signature image with interactive crop box (resize handles), zoom slider (0-100\%), ``Reset'' button, preview area showing cropped signature (``Apichat Ruangsuk''), checkbox for ``Remove white background (transparent PNG)'', and action buttons (``Pick different file'' / ``Use this crop'').}
     \label{fig:document_signing}
 \end{figure}
 
@@ -3316,6 +3318,9 @@ The AI layer will continue to evolve after the first deployment cycle. Planned i
 \section{Platform Enhancements}
 
 Additional improvements under consideration include mobile push approvals, richer analytics dashboards, policy simulation tools, bulk document handling, and advanced archiving rules. These changes would help AgentiX scale from a project demonstration into a long-term enterprise platform.
+
+\section{Source Code}
+The comprehensive source code for AgentiX, including README documentation, is accessible via the following repository:
 
 \bibliographystyle{plainurl}
 \nocite{*}
